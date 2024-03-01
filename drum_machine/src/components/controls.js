@@ -68,7 +68,7 @@ export const SoundName = () => {
 					InputProps={{
 						readOnly: true,
 					}}
-					defaultValue={name}
+					value={name}
 				/>
 			</Box>
 		</div>

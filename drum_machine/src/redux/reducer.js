@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
 	volume: 100,
-	name: '',
+	name: "",
 	on: true,
 };
 
@@ -16,8 +16,12 @@ export const controlSlice = createSlice({
 		changeOnOff: (state, action) => {
 			state.on = action.payload;
 		},
+
+		changeName: (state, action) => {
+			state.name = action.payload;
+		},
 	},
 });
 
-export const { changeVolume, changeOnOff } = controlSlice.actions;
+export const { changeVolume, changeOnOff, changeName } = controlSlice.actions;
 export default controlSlice.reducer; //Se exporta automaticamente como soundReducer

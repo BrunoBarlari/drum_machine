@@ -4,11 +4,15 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import "./App.css";
 import ControlPanel from "./ControlPanel";
+import { DrumPad } from "./components/soundButtons";
 
 function App() {
 	return (
 		<div className="App">
-			<ControlPanel />
+			<div id="drum-machine">
+				<ControlPanel />
+			</div>
+			<DrumPad />
 		</div>
 	);
 }
