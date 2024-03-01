@@ -1,4 +1,5 @@
 import Button from "@mui/material/Button";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import sound1 from "../media/sound1.mp3";
 import sound2 from "../media/sound2.mp3";
@@ -15,20 +16,39 @@ export const SoundPad = ({ id, src, name }) => {
 	const dispatch = useDispatch();
 	const audioVolume = useSelector((state) => state.sound.volume);
 
-	const handleClick = () => {
+	//Audio Setup
+	const handleAudio = () => {
 		const audioElement = document.getElementById(id);
 		audioElement.volume = audioVolume / 100;
 		audioElement.currentTime = 0;
 		audioElement.play();
-		dispatch(changeName(name));
 	};
+
+	//Keyboard setup
+	const handleKeyPress = (event) => {
+		if (event.key === id.toLowerCase()) {
+			handleAudio();
+			dispatch(changeName(name));
+		}
+	};
+
+	useEffect(() => {
+		document.addEventListener("keydown", handleKeyPress);
+	});
 
 	return (
 		<div>
 			<audio id={id} className="clip" preload="auto">
 				<source src={src} type="audio/mpeg" />
 			</audio>
-			<Button variant="contained" onClick={handleClick}>
+			<Button
+				id="drum_button"
+				variant="contained"
+				onClick={() => {
+					handleAudio();
+					dispatch(changeName(name));
+				}}
+			>
 				{id}
 			</Button>
 		</div>
